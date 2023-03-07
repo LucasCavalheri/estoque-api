@@ -27,3 +27,19 @@ model Category {
 
   @@map("categories")
 }
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  price String
+  description String
+  banner String
+  amount Int
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  category Category @relation(fields: [category_id], references: [id])
+  category_id String
+
+  @@map("products")
+}
