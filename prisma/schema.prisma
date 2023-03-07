@@ -29,17 +29,31 @@ model Category {
 }
 
 model Product {
-  id String @id @default(uuid())
-  name String
-  price String
+  id          String    @id @default(uuid())
+  name        String
+  price       String
   description String
-  banner String
-  amount Int
+  banner      String
+  amount      Int
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
+
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+
+  items Item[]
+
+  @@map("products")
+}
+
+model Item {
+  id         String    @id @default(uuid())
+  amount     Int
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  category Category @relation(fields: [category_id], references: [id])
-  category_id String
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
 
-  @@map("products")
+  @@map("items")
 }
