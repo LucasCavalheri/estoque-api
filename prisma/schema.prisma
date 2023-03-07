@@ -17,3 +17,13 @@ model User {
 
   @@map("users")
 }
+
+model Category {
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  products   Product[]
+
+  @@map("categories")
+}
