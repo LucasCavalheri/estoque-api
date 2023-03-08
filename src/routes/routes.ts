@@ -1,9 +1,8 @@
 import { Router, Request, Response } from 'express';
+import UserRouter from './UserRouter';
 
 const router = Router();
 
-router.get('/test', (_req: Request, res: Response) => {
-  return res.json({ working: true });
-});
+router.use('/user', UserRouter);
 
-export { router };
+export default router;
